@@ -3,17 +3,19 @@
 * **Web**: No disponible
 * **GitHub**: https://github.com/jbm00030
 
+* **Tablero de Trello**: https://trello.com/b/13jEQpyR/pr%C3%A1ctica-3-jose-ballester
+
 Captura de Pantalla del inicio - Trello: 
-<img src='/captura_inicial_trello' width='400px'>
+<img src='/captura_inicial_trello.png' width='400px'>
 
 Captura de Pantalla del home - Fauna: 
-<img src='/hfauna' width='400px'>
+<img src='/hfauna.png' width='400px'>
 
 Captura de Pantalla de la base de datos - Fauna: 
-<img src='/docfauna' width='400px'>
+<img src='/docfauna.png' width='400px'>
 
 Captura de Pantalla de la colección - Fauna: 
-<img src='/colecfauna' width='400px'>
+<img src='/colecfauna.png' width='400px'>
 
 * **Documentos de la colección en JSON**
 
