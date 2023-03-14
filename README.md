@@ -1,3 +1,160 @@
+* **Nombre**: José Ballester Marín
+* **Correo**: jbm00030@red.ujaen.es
+* **Web**: No disponible
+* **GitHub**: https://github.com/jbm00030
+
+Captura de Pantalla del inicio - Trello: 
+<img src='/captura_inicial_trello' width='400px'>
+
+Captura de Pantalla del home - Fauna: 
+<img src='/hfauna' width='400px'>
+
+Captura de Pantalla de la base de datos - Fauna: 
+<img src='/docfauna' width='400px'>
+
+Captura de Pantalla de la colección - Fauna: 
+<img src='/colecfauna' width='400px'>
+
+* **Documentos de la colección en JSON**
+
+```
+{
+  id: "0001",
+  nombre: "Jose",
+  apellidos: "Ballester Marin",
+  equipos: ["movistar", "vodafone", "orange"],
+  f_nac: {
+    dia: "16",
+    mes: "05",
+    anio: "2000"
+  },
+  email: "jbm@uja.es"
+}
+
+{
+  id: "0002",
+  nombre: "Juan",
+  apellidos: "Campos Jimenez",
+  equipos: ["vodafone", "orange"],
+  f_nac: {
+    dia: "23",
+    mes: "10",
+    anio: "2002"
+  },
+  email: "jcj@uja.es"
+}
+
+{
+  id: "0003",
+  nombre: "Fran",
+  apellidos: "Aguilar Zaragoza",
+  equipos: ["movistar"],
+  f_nac: {
+    dia: "21",
+    mes: "05",
+    anio: "2000"
+  },
+  email: "faz@uja.es"
+}
+
+{
+  id: "0004",
+  nombre: "Raul",
+  apellidos: "Fernandez Ruiz",
+  equipos: ["movistar", "vodafone"],
+  f_nac: {
+    dia: "06",
+    mes: "01",
+    anio: "2003"
+  },
+  email: "rfr@uja.es"
+}
+
+{
+  id: "0005",
+  nombre: "Dani",
+  apellidos: "Campos Bosques",
+  equipos: ["vodafone", "orange"],
+  f_nac: {
+    dia: "30",
+    mes: "09",
+    anio: "1998"
+  },
+  email: "dcb@uja.es"
+}
+
+{
+  id: "0006",
+  nombre: "John",
+  apellidos: "Lopez Garvin",
+  equipos: ["movistar", "vodafone", "orange"],
+  f_nac: {
+    dia: "26",
+    mes: "12",
+    anio: "2001"
+  },
+  email: "jlg@uja.es"
+}
+
+{
+  id: "0007",
+  nombre: "Javi",
+  apellidos: "Martinez Lopez",
+  equipos: ["movistar", "orange"],
+  f_nac: {
+    dia: "01",
+    mes: "08",
+    anio: "2000"
+  },
+  email: "jml@uja.es"
+}
+
+{
+  id: "0008",
+  nombre: "Jose",
+  apellidos: "Lamarca Garcia",
+  equipos: ["movistar", "vodafone", "orange"],
+  f_nac: {
+    dia: "06",
+    mes: "06",
+    anio: "2004"
+  },
+  email: "jlg@uja.es"
+}
+
+{
+  id: "0009",
+  nombre: "Jesus",
+  apellidos: "Corea Blanco",
+  equipos: ["vodafone", "orange"],
+  f_nac: {
+    dia: "05",
+    mes: "10",
+    anio: "2001"
+  },
+  email: "jcb@uja.es"
+}
+
+{
+  id: "0010",
+  nombre: "Ramon",
+  apellidos: "Molina Fernandez",
+  equipos: ["orange"],
+  f_nac: {
+    dia: "19",
+    mes: "07",
+    anio: "1997"
+  },
+  email: "rmf@uja.es"
+}
+
+```
+
+
+
+
+
+
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10388744&assignment_repo_type=AssignmentRepo)
 # *Plantilla Práctica Microservicios*: descripción de la aplicación
 
