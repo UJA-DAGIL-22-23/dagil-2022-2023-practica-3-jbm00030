@@ -14,10 +14,10 @@ const faunadb = require('faunadb'),
     q = faunadb.query;
 
 const client = new faunadb.Client({
-    secret: '¿¿¿ CLAVE SECRETA EN FAUNA PARA ESTA BBDD???',
+    secret: 'fnAE_5O3EiAAzH7FwmMkL0o6LNsuSiz6Px6EQW7L',
 });
 
-const COLLECTION = "¿¿¿ COLECCION ???"
+const COLLECTION = "Ciclistas"
 
 // CALLBACKS DEL MODELO
 
