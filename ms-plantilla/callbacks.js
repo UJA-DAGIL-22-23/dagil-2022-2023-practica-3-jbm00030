@@ -92,10 +92,10 @@ const CB_OTHERS = {
     acercaDe: async (req, res) => {
         try {
             CORS(res).status(200).json({
-                mensaje: "Microservicio MS Plantilla: acerca de",
-                autor: "¿¿¿ AUTOR ???",
-                email: "¿¿¿ EMAIL ???",
-                fecha: "¿¿¿ FECHA ???"
+                mensaje: "Información del programador",
+                autor: "José Ballester Marín",
+                email: "jbm00030@red.ujaen.es",
+                fecha: "25-03-2023"
             });
         } catch (error) {
             CORS(res).status(500).json({ error: error.description })
