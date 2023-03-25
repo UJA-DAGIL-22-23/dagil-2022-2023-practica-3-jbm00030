@@ -61,6 +61,29 @@ const CB_MODEL_SELECTS = {
         }
     },
 
+    /**
+     * FUNCIÓN QUE OBTIENE TODOS LOS CICLISTAS 
+     * @param {*} req Objeto con los parámetros que se han pasado en la llamada a esta URL 
+     * @param {*} res Objeto Response con las respuesta que se va a dar a la petición recibida
+     * 
+     * 
+     * 
+     */
+    sacaCiclistas: async (req, res) => {
+        try {
+            let ciclistas = await client.query(
+                q.Map(
+                    q.Paginate(q.Documents(q.Collection(COLLECTION))),
+                    q.Lambda("X", q.Get(q.Var("X")))
+                )
+            )
+            CORS(res).status(200).json(ciclistas)
+        } catch (error) {
+            res.status(500).json({ error: error.description })
+        }
+    },
+    
+
 }
 
 

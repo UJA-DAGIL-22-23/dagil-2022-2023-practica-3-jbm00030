@@ -47,5 +47,22 @@ router.get("/test_db", async (req, res) => {
 });
 
 
+
+
+
+/**
+ * Utilizado para devolver todos los ciclistas de FAUNA
+ * 
+ * 
+ */
+router.get("/sacaCiclistas", async (req, res) => {
+    try {
+        await callbacks.sacaCiclistas(req, res)
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
 // Exporto el módulo para poder usarlo en server
 module.exports = router;

@@ -92,7 +92,46 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
     Frontend.Article.actualizar("Plantilla Acerca de", mensajeAMostrar)
 }
 
+//
 
+
+Plantilla.cuerpo1 = function(c){
+    const ciclista= c.data;
+
+    return `<tr><td><em>${ciclista.nombre} ${ciclista.apellidos}</em></td></tr>`;
+}
+//FUNCIONES REALIZADAS PARA PROCESAR LAS HISTORIAS DE USUARIO
+
+/**
+ * 
+ * 
+ * 
+ */
+
+
+
+Plantilla.muestraCiclistas = function(vector){
+
+    let x= "";
+
+    x += `<table class="op1"><thead><th>Ciclistas</th></thead><tbody>`;
+    vector.data.forEach(element => x += Plantilla.cuerpo1(element))
+    x += `</tbody></table>`;
+
+    Frontend.Article.actualizar("Nombre de todos los ciclistas",x);
+}
+
+
+//FUNCIONES PARA PROCESAROS LOS EVENTOS DE LOS BOTONES
+
+/**
+ * 
+ * 
+ */
+
+Plantilla.lista_nombres = function (){
+    this.descargarRuta("/plantilla/sacaCiclistas", this.muestraCiclistas);
+}
 /**
  * Función principal para responder al evento de elegir la opción "Home"
  */
