@@ -92,7 +92,11 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
     Frontend.Article.actualizar("Plantilla Acerca de", mensajeAMostrar)
 }
 
-//
+/**
+ * CUERPO DE LA FUNCIÓN DE MOSTRAR TODOS LOS CICLISTAS POR SU NOMBRE COMPLETO
+ * @param {*} c Objeto Ciclista del que se obtiene la información
+ * @returns Devuelve exactamente la fila de la tabla de un ciclista concreto
+ */
 
 
 Plantilla.cuerpo1 = function(c){

@@ -123,7 +123,44 @@ describe("Plantilla.mostrarAcercaDe: ", function () {
         })
 })
 
+/**
+ * PRUEBA DE LA FUNCIÓN QUE ME REALIZA EL CUERPO DE A FUNCIÓN DE LA HU 2
+ */
+describe("Comprueba cuperpo primera tabla", function(){
 
+
+    it("Compreba que la función rellena la tabla correctamente", function() {
+        //Creo unos datos con los que probar
+        const c = {
+            data: {
+              nombre: 'Jose',
+              apellidos: 'Ballester Marin'
+            }
+        };
+
+        const resultado=Plantilla.cuerpo1(c);
+        expect(resultado).toBe('<tr><td><em>Jose Ballester Marin</em></td></tr>');
+
+    });
+
+
+})
+
+describe("Prueba de la función sacaCiclistas que muestra los nombres de los ciclistas", function(){
+    
+    it("Comprueba que la función devuelve correctamente el código html para hacer la tabla con sus datos",  function(){
+        let c = {
+            data: {
+              nombre: 'Jose',
+              apellidos: 'Ballester Marin'
+            }
+        };
+
+        const resultado=Plantilla.muestraCiclistas(c);
+
+        expect(resultado).toBe('<table class="op1"><thead><th>Ciclistas</th></thead><tbody><tr><td><em>Jose Ballester Marin</em></td></tr></tbody></table>');
+    })
+})
 /*
 IMPORTANTE
 ==========
