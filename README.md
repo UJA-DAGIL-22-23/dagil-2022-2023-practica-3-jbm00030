@@ -6,16 +6,16 @@
 * **Tablero de Trello**: https://trello.com/b/13jEQpyR/pr%C3%A1ctica-3-jose-ballester
 
 Captura de Pantalla del inicio - Trello: 
-<img src='/captura_inicial_trello.PNG' width='700px'>
+<img src='/captura_inicial_trello.PNG' width='600px'>
 
 Captura de Pantalla del home - Fauna: 
-<img src='/hfauna.PNG' width='700px'>
+<img src='/hfauna.PNG' width='600px'>
 
 Captura de Pantalla de la base de datos - Fauna: 
-<img src='/docfauna.PNG' width='700px'>
+<img src='/docfauna.PNG' width='600px'>
 
 Captura de Pantalla de la colección - Fauna: 
-<img src='/colecfauna.PNG' width='700px'>
+<img src='/colecfauna.PNG' width='600px'>
 
 * **Documentos de la colección en JSON**
 
@@ -152,7 +152,24 @@ Captura de Pantalla de la colección - Fauna:
 
 ```
 
+## INCREMENTO 1 - 26-03-2023
 
+### CAPTURA INICIAL TRELLO
+<img src='/ini_i1.PNG' width='600px'>
+
+### CAPTURA FINAL TRELLO
+<img src='/fin_i1.PNG' width='600px'>
+
+## FUNCIONALIDADES:
+
+### ACERCA DE
+<img src='/i1_1.PNG' width='600px'>
+
+### LISTA NOMBRES
+<img src='/i1_2.PNG' width='600px'>
+
+### DATOS COMPLETOS
+<img src='/i1_3.PNG' width='600px'>
 
 
 

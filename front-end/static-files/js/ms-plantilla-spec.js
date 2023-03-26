@@ -216,6 +216,8 @@ describe("Comprueba cuperpo SEGUNDA tabla", function(){
 
 /**
  * 
+ * FUNCIÓN QUE PRUEBA LA FUNCIÓN QUE IMPRIME QUE TODOS LOS DATOS DE LOS CICLISTAS
+ * 
  */
 
 describe("Prueba de la función todosDatos que muestra los datos de los ciclistas", function(){
@@ -254,16 +256,6 @@ describe("Prueba de la función todosDatos que muestra los datos de los ciclista
         Plantilla.todosDatos(c);
         expect(Frontend.Article.actualizar).toHaveBeenCalledWith("Datos de todos los ciclistas", '<table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody><tr><td>0002</td><td>Jose Ballester Marin</td><td>movistar,vodafone,orange</td><td>16/5/2000</td><td>jbm@uja.es</td></tr></tbody></table>');
         
-        //<tr><td><em>Jose Ballester Marin</em></td></tr>
-        
-        //expect(Frontend.Article.actualizar).toHaveBeenCalledWith("Nombre de todos los ciclistas", c);
-
-        //const resultado = Plantilla.muestraCiclistas(c);
-
-        //const prueba = resultado.getElementsByTagName('tbody')[0];
-
-        //expect(prueba.children[0].textContent).toBe('Jose Ballester Marin');
-        //expect(resultado).toBe('<table class="op1"><thead><th>Ciclistas</th></thead><tbody><tr><td><em>Jose Ballester Marin</em></td></tr><tr><td><em>Juan Ballester Marin</em></td></tr></tbody></table>');
     })
 })
 
