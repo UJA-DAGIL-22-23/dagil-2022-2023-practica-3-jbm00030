@@ -104,11 +104,24 @@ Plantilla.cuerpo1 = function(c){
 
     return `<tr><td><em>${ciclista.nombre} ${ciclista.apellidos}</em></td></tr>`;
 }
+
+/**
+ * 
+ * @param {*} c 
+ * @returns 
+ */
+Plantilla.cuerpo2 = function(c){
+    const ciclista= c.data;
+    
+    //const aux= new Date (c.f_nac.dia, c.f_nac.mes, c.f_nac.anio);
+
+    return `<tr><td>${ciclista.id}</td><td>${ciclista.nombre} ${ciclista.apellidos}</td><td>${ciclista.equipos}</td><td>${ciclista.f_nac.dia}/${ciclista.f_nac.mes}/${ciclista.f_nac.anio}</td><td>${ciclista.email}</td></tr>`;
+}
 //FUNCIONES REALIZADAS PARA PROCESAR LAS HISTORIAS DE USUARIO
 
 /**
  * 
- * 
+ * ESTA FUNCIÓN MUESTRA LOS NOMBRE DE LOS CICLISTAS CON FORMATO HTML PARA DIRECTAMENTE MOSTRARLO
  * 
  */
 
@@ -125,6 +138,23 @@ Plantilla.muestraCiclistas = function(vector){
     Frontend.Article.actualizar("Nombre de todos los ciclistas",x);
 }
 
+
+
+/**
+ * 
+ * @param {*} vector 
+ * 
+ */
+Plantilla.todosDatos = function(vector){
+    
+    let x = "";
+
+    x += `<table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>`;
+    vector.data.forEach(element => x += Plantilla.cuerpo2(element))
+    x += `</tbody></table>`;
+
+    Frontend.Article.actualizar("Datos de todos los ciclistas",x);
+}
 
 //FUNCIONES PARA PROCESAROS LOS EVENTOS DE LOS BOTONES
 
@@ -151,4 +181,6 @@ Plantilla.procesarAcercaDe = function () {
 }
 
 
-
+Plantilla.lista_datos = function (){
+    this.descargarRuta("/plantilla/sacaCiclistas", this.todosDatos);
+}
