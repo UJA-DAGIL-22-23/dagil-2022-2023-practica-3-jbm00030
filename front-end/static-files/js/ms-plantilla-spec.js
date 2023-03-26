@@ -149,18 +149,37 @@ describe("Comprueba cuperpo primera tabla", function(){
 describe("Prueba de la función sacaCiclistas que muestra los nombres de los ciclistas", function(){
     
     it("Comprueba que la función devuelve correctamente el código html para hacer la tabla con sus datos",  function(){
-        let c = {
-            data: {
-              nombre: 'Jose',
-              apellidos: 'Ballester Marin'
-            }
+        const c = {
+            data:[{
+                data: {
+                    nombre: 'Jose',
+                    apellidos: 'Ballester Marin'
+                },
+                data: {
+                    nombre: 'Juan',
+                    apellidos: 'Ballester Marin'
+                }
+            }]
         };
 
-        const resultado=Plantilla.muestraCiclistas(c);
+        spyOn(Frontend.Article, "actualizar");
+        Plantilla.muestraCiclistas(c);
+        expect(Frontend.Article.actualizar).toHaveBeenCalledWith("Nombre de todos los ciclistas", '<table class="op1"><thead><th>Ciclistas</th></thead><tbody><tr><td><em>Juan Ballester Marin</em></td></tr></tbody></table>');
+        
+        //<tr><td><em>Jose Ballester Marin</em></td></tr>
+        
+        //expect(Frontend.Article.actualizar).toHaveBeenCalledWith("Nombre de todos los ciclistas", c);
 
-        expect(resultado).toBe('<table class="op1"><thead><th>Ciclistas</th></thead><tbody><tr><td><em>Jose Ballester Marin</em></td></tr></tbody></table>');
+        //const resultado = Plantilla.muestraCiclistas(c);
+
+        //const prueba = resultado.getElementsByTagName('tbody')[0];
+
+        //expect(prueba.children[0].textContent).toBe('Jose Ballester Marin');
+        //expect(resultado).toBe('<table class="op1"><thead><th>Ciclistas</th></thead><tbody><tr><td><em>Jose Ballester Marin</em></td></tr><tr><td><em>Juan Ballester Marin</em></td></tr></tbody></table>');
     })
 })
+
+
 /*
 IMPORTANTE
 ==========
