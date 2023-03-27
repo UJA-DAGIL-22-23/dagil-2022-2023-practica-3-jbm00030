@@ -105,6 +105,7 @@ Plantilla.cuerpo1 = function(c){
     return `<tr><td><em>${ciclista.nombre} ${ciclista.apellidos}</em></td></tr>`;
 }
 
+
 /**
  * 
  * @param {*} c 
@@ -156,6 +157,28 @@ Plantilla.todosDatos = function(vector){
     Frontend.Article.actualizar("Datos de todos los ciclistas",x);
 }
 
+/**
+ * 
+ * ESTA FUNCIÓN MUESTRA LOS NOMBRES DE LOS CICLISTAS ORDENADOS CON FORMATO HTML PARA DIRECTAMENTE MOSTRARLO
+ * 
+ */
+
+
+
+Plantilla.muestraCiclistasOrd = function(vector){
+
+    let x= "";
+    let aux=vector.data.sort((a, b) => a.data.nombre>b.data.nombre?1:-1);
+    
+
+    x += `<table class="op1"><thead><th>Ciclistas</th></thead><tbody>`;
+    
+    aux.forEach(element => x += Plantilla.cuerpo1(element));
+    x += `</tbody></table>`;
+
+    Frontend.Article.actualizar("Nombre de todos los ciclistas ordenados alfabéticamente",x);
+}
+
 //FUNCIONES PARA PROCESAROS LOS EVENTOS DE LOS BOTONES
 
 /**
@@ -183,4 +206,8 @@ Plantilla.procesarAcercaDe = function () {
 
 Plantilla.lista_datos = function (){
     this.descargarRuta("/plantilla/sacaCiclistas", this.todosDatos);
+}
+
+Plantilla.lista_nombresOrd= function(){
+    this.descargarRuta("/plantilla/sacaCiclistas", this.muestraCiclistasOrd);
 }
