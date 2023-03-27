@@ -259,6 +259,38 @@ describe("Prueba de la función todosDatos que muestra los datos de los ciclista
     })
 })
 
+describe("Prueba de la función muestraCiclistasOrd que muestra los nombres de los ciclistas ordenados", function(){
+    
+    it("Comprueba que la función devuelve correctamente el código html ordenado para hacer la tabla con los nombres",  function(){
+        const c = {
+            data:[{
+                data: {
+                    nombre: 'Jose',
+                    apellidos: 'Ballester Marin'
+                },
+                data: {
+                    nombre: 'Alex',
+                    apellidos: 'Ballester Marin'
+                }
+            }]
+        };
+
+        spyOn(Frontend.Article, "actualizar");
+        Plantilla.muestraCiclistasOrd(c);
+        expect(Frontend.Article.actualizar).toHaveBeenCalledWith("Nombre de todos los ciclistas ordenados alfabéticamente", '<table class="op1"><thead><th>Ciclistas</th></thead><tbody><tr><td><em>Alex Ballester Marin</em></td></tr></tbody></table>');
+        
+        //<tr><td><em>Jose Ballester Marin</em></td></tr>
+        
+        //expect(Frontend.Article.actualizar).toHaveBeenCalledWith("Nombre de todos los ciclistas", c);
+
+        //const resultado = Plantilla.muestraCiclistas(c);
+
+        //const prueba = resultado.getElementsByTagName('tbody')[0];
+
+        //expect(prueba.children[0].textContent).toBe('Jose Ballester Marin');
+        //expect(resultado).toBe('<table class="op1"><thead><th>Ciclistas</th></thead><tbody><tr><td><em>Jose Ballester Marin</em></td></tr><tr><td><em>Juan Ballester Marin</em></td></tr></tbody></table>');
+    })
+})
 
 /*
 IMPORTANTE
