@@ -179,6 +179,37 @@ Plantilla.muestraCiclistasOrd = function(vector){
     Frontend.Article.actualizar("Nombre de todos los ciclistas ordenados alfabéticamente",x);
 }
 
+/**
+ * FUNCIÓN QUE SACA UN CICLISTA POR SU ID
+ * 
+ * @param {*} idCiclista id del ciclista en concreto
+ * @param {*} callBackFn función que se llama con los datos
+ */
+Plantilla.muestraID = async function(idCiclista, callBackFn){
+    try{
+        const ruta= Frontend.API_GATEWAY+"/plantilla/sacaCiclista/"+idCiclista
+        const respuesta= await fetch(ruta);
+        if(respuesta){
+            const ciclista = await respuesta.json()
+            callBackFn(ciclista)
+        }
+    }catch(error){
+        alert("Error: No se ha podido acceder al API")
+        console.error(error)
+    }
+}
+/**
+ * ciclista CICLISTA DEL QUE SE OPTIENEN LOS DATOS 
+ */
+Plantilla.muestraCiclistaID = function (ciclista){
+    let x = "";
+
+    x += `<table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>`;
+    x += Plantilla.cuerpo2(ciclista)
+    x += `</tbody></table>`;
+
+    Frontend.Article.actualizar("Datos del ciclista",x)
+}
 //FUNCIONES PARA PROCESAROS LOS EVENTOS DE LOS BOTONES
 
 /**
@@ -210,4 +241,8 @@ Plantilla.lista_datos = function (){
 
 Plantilla.lista_nombresOrd= function(){
     this.descargarRuta("/plantilla/sacaCiclistas", this.muestraCiclistasOrd);
+}
+
+Plantilla.lista_ciclista = function(ciclista){
+    this.muestraID(ciclista,this.muestraCiclistaID);
 }
