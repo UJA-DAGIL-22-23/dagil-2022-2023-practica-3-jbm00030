@@ -32,8 +32,17 @@ router.get("/acercade", async (req, res) => {
         console.log(error);
     }
 });
+/**
+ * UTILIZADO PARA DEVOLVER UN CICLISTA DE FAUNA
+ */
 
-
+router.get("/sacaCiclista/:idCiclista", async (req, res) => {
+    try{
+        await callbacks.sacaCiclista(req, res)
+    }catch (error){
+        console.log(error)
+    }
+});
 
 /**
  * Test de conexión a la BBDD

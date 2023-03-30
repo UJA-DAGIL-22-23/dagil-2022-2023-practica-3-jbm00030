@@ -82,10 +82,27 @@ const CB_MODEL_SELECTS = {
             res.status(500).json({ error: error.description })
         }
     },
-    
+
+    /**
+     * FUNCIÓN PARA OBTENER UN CICLISTA EN CONCRETO CON SU ID
+     * @param {*} req 
+     * @param {*} res 
+     */
+    sacaCiclista: async (req, res) => {
+        try {
+            let ciclista = await client.query(
+                q.Get(q.Ref(q.Collection(COLLECTION), req.params.idCiclista))
+                )
+            
+            CORS(res).status(200).json(ciclista)
+        } catch (error) {
+            res.status(500).json({ error: error.description })
+        }
+    },
 
 }
 
+    
 
 
 // CALLBACKS ADICIONALES

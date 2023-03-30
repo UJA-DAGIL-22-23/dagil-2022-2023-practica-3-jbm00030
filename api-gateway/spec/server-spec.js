@@ -43,7 +43,7 @@ describe('API Gateway: rutas estáticas', () => {
     //COMPRUEBA LA HISTORIA DE USUARIO DE LISTAR TODOS LOS CICLISTAS MOSTRANDO SU NOMBRE COMPLETO
 
     
-    it('Devuelve que ', (done) => {
+    it('Devuelve que debe haber al menos 6 atributos en cada ciclista', (done) => {
       supertest(app)
         .get('/plantilla/sacaCiclistas')
         .expect(200)
@@ -54,6 +54,26 @@ describe('API Gateway: rutas estáticas', () => {
 
           assert(res.body.hasOwnProperty('data'));
           assert(res.body.data.length >= 7);
+
+        })
+        .end((error) => { error ? done.fail(error) : done() })
+    });
+
+
+
+    //COMPRUEBA LA HISTORIA DE USUARIO DE LISTAR SOLO UN CILCISTA DADO POR SU ID
+
+    it('Devuelve el nombre del ciclista con un id dado', (done) => {
+      supertest(app)
+        .get('/plantilla/sacaCiclista/359097846737141965')
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect(function (res) {
+
+          //console.log( "BODY ACERCA DE ", res.body ); // Para comprobar qué contiene exactamente res.body
+
+          assert(res.body.data.hasOwnProperty('nombre'));
+          assert(res.body.data.nombre === 'Jose');
 
         })
         .end((error) => { error ? done.fail(error) : done() })
