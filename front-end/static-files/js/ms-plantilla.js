@@ -19,6 +19,7 @@ Plantilla.datosDescargadosNulos = {
 }
 
 
+
 /**
  * Función que descarga la info MS Plantilla al llamar a una de sus rutas
  * @param {string} ruta Ruta a descargar
@@ -111,6 +112,7 @@ Plantilla.cuerpo1 = function(c){
  * @param {*} c 
  * @returns 
  */
+
 Plantilla.cuerpo2 = function(c){
     const ciclista= c.data;
     
@@ -199,6 +201,28 @@ Plantilla.muestraID = async function(idCiclista, callBackFn){
     }
 }
 /**
+ * 
+ * @param {*} cond 
+ * @param {*} callBackFn 
+ */
+Plantilla.sacaCiclistasMS = async function(cond, callBackFn){
+    try{
+        const ruta= Frontend.API_GATEWAY+"/plantilla/sacaCiclistas"
+        const respuesta= await fetch(ruta);
+        if(respuesta){
+            const ciclistas = await respuesta.json()
+            callBackFn(cond,ciclistas)
+        }
+    }catch(error){
+        alert("Error: No se ha podido acceder al API")
+        console.error(error)
+    }
+}
+
+
+
+
+/**
  * ciclista CICLISTA DEL QUE SE OPTIENEN LOS DATOS 
  */
 Plantilla.muestraCiclistaID = function (ciclista){
@@ -210,11 +234,52 @@ Plantilla.muestraCiclistaID = function (ciclista){
 
     Frontend.Article.actualizar("Datos del ciclista",x)
 }
-//FUNCIONES PARA PROCESAROS LOS EVENTOS DE LOS BOTONES
+
+/**
+ * Función que devuelve los ciclistas por el campo que se haya elegido
+ * 
+ * En primer lugar creo la cabecera y después ordeno el vector por el campo elegido, después recorro el vector
+ * metiendo los datos de los ciclistas ordenados ya en html. Añado el pie de tabla y actualizo la vista.
+ * 
+ * @param {*} cond Condición por la que ordenar
+ * @param {*} ciclistas Todos los ciclistas para ordenar
+ */
+
+Plantilla.muestraCampo = function (cond, ciclistas){
+    let x = "";
+
+    //AÑADO LA CABECERA
+    x += `<table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>`;
+
+    //ORDENO
+    let auxiliar = ciclistas.data.sort((a, b) => {
+        if(cond === "f_nac"){ //ORDENO POR F_NAC
+            const f_izq = new Date(a.data.f_nac.anio, a.data.f_nac.mes, a.data.f_nac.dia);
+            const f_der = new Date(b.data.f_nac.anio, b.data.f_nac.mes, b.data.f_nac.dia);
+                return f_izq < f_der ? -1 : 1;
+        }else{
+            //PARA ORDENAR POR OTRO CAMPO QUE NO SEA LA FECHA
+                return a.data[cond] < b.data[cond] ? -1 : 1;
+        }
+        
+    });
+
+    //POR CADA CICLISTA MUESTRO TODOS SUS DATOS
+    auxiliar.forEach(element => x += Plantilla.cuerpo2(element));
+
+    // PIE DE TABLA
+    x += `</tbody></table>`;
+
+    //ACTUALIZO LA VISTA
+    Frontend.Article.actualizar("Datos de los ciclistas ordenados",x)
+
+}
+
+//FUNCIONES PARA PROCESAR LOS EVENTOS DE LOS BOTONES
 
 /**
  * 
- * 
+ * Función principal para responder al evento de elegir la opción "Lista nombres"
  */
 
 Plantilla.lista_nombres = function (){
@@ -223,6 +288,7 @@ Plantilla.lista_nombres = function (){
 /**
  * Función principal para responder al evento de elegir la opción "Home"
  */
+
 Plantilla.procesarHome = function () {
     this.descargarRuta("/plantilla/", this.mostrarHome);
 }
@@ -230,19 +296,69 @@ Plantilla.procesarHome = function () {
 /**
  * Función principal para responder al evento de elegir la opción "Acerca de"
  */
+
 Plantilla.procesarAcercaDe = function () {
     this.descargarRuta("/plantilla/acercade", this.mostrarAcercaDe);
 }
 
+/**
+ * Función principal para responder al evento de "Datos Completos"
+ */
 
 Plantilla.lista_datos = function (){
     this.descargarRuta("/plantilla/sacaCiclistas", this.todosDatos);
 }
 
+
+/**
+ * Función principal para responder al evento de "Lista Nombres Ordenados"
+ */
+
 Plantilla.lista_nombresOrd= function(){
     this.descargarRuta("/plantilla/sacaCiclistas", this.muestraCiclistasOrd);
 }
 
+/**
+ * Función principal para responder al evento de "Lista Ciclista"
+ */
+
 Plantilla.lista_ciclista = function(ciclista){
     this.muestraID(ciclista,this.muestraCiclistaID);
+}
+
+
+/**
+ * Función principal para responder al evento de "Lista Ciclistas Ordenados Por"
+ */
+
+Plantilla.lista_todoOrd= function (){
+
+    //OBTENGO LA CONDICIÓN POR LA QUE ORDENAR
+    const condition = document.querySelector('#cond').value;
+
+    //OBTENGO EL VALOR DEL FORMULARIO
+    const formulario = document.querySelector('#eleccion');
+    formulario.style.display = 'block';
+
+    //OBTENGO LA ACCIÓN DEL BOTÓN
+    const boton= document.querySelector('#btn');
+    
+    //ESCUCHO EL CLICK Y ACTUALIZO EL VALOR DE LA CONDICIÓN
+    formulario.addEventListener('submit', (click) =>{
+        click.preventDefault();
+        //AQUÍ GUARDO LA CONDICIÓN
+        const aux= document.querySelector('#cond').value;
+
+        //LLAMO A LA FUCNION QUE ACTUALIZA LA VISTA CON LA CONDICIÓN ELEGIDA
+        this.sacaCiclistasMS(aux, this.muestraCampo);
+
+        //AQUÍ SE MUESTRA EL RESULTADO AL HACER CLICK EN GO
+        const enlace= document.querySelectorAll('.mostrar');
+        click.forEach((enlace)=> {
+            enlace.addEventListener('click', () => {
+                formulario.style.display = 'none';
+            })
+        })
+    });
+
 }

@@ -34,6 +34,32 @@
             title="HU 3">Lista nombres ordenados</a>
         <a href="javascript:Plantilla.lista_ciclista('359097846737141965')" class="opcion-principal"
             title="HU 6">Lista ciclista</a>
+        <a href="javascript:Plantilla.lista_todoOrd()" class="opcion-principal"
+            title="HU 5">Lista ciclistas ordenados por</a>
+            
+            <br></br>
+            <div id="eleccion" style="display: none;">
+                <form >
+                    <!-- Frase que sale al lado del formulario -->
+                    <label for="cond"> Ordenar por:</label> 
+                    <!-- Donde se almacena la condición -->
+                    <select id="cond" name="cond"> 
+                        <!-- ORDENAR POR NOMBRE -->
+                        <option value="nombre">Nombre</option>
+                        <!-- ORDENAR POR APELLIDOS -->
+                        <option value="apellidos">Apellidos</option>
+                        <!-- ORDENAR POR EQUIPO -->
+                        <option value="equipos">Equipos</option>
+                        <!-- ORDENAR POR EMAIL -->
+                        <option value="email">Email</option>
+                        <!-- ORDENAR POR FECHA DE NACIMIENTO -->
+                        <option value="f_nac">Fecha de Nacimiento</option>
+                    </select>
+                    <!-- Botón que manda la condición por la que ordenar
+                    -->
+                    <button id="btn" type="submit">GO</button>
+                </form>
+            </div>
     </nav>
 
     <!-- 
