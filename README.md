@@ -182,13 +182,13 @@ Captura de Pantalla de la colección - Fauna:
 
 ## FUNCIONALIDADES:
 
-### ACERCA DE
+### LISTA NOMBRES ORDENADOS
 <img src='/i2_1.PNG' width='600px'>
 
-### LISTA NOMBRES
+### LISTA CICLISTA
 <img src='/i2_2.PNG' width='600px'>
 
-### DATOS COMPLETOS
+### LISTA CICLISTAS ORDENADOS POR
 <img src='/i3_3.PNG' width='600px'>
 
 
