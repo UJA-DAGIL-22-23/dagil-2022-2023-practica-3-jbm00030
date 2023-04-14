@@ -172,6 +172,26 @@ Captura de Pantalla de la colección - Fauna:
 <img src='/i1_3.PNG' width='600px'>
 
 
+## INCREMENTO 2 - 15-04-2023
+
+### CAPTURA INICIAL TRELLO
+<img src='/ini_i2.PNG' width='600px'>
+
+### CAPTURA FINAL TRELLO
+<img src='/fin_i2.PNG' width='600px'>
+
+## FUNCIONALIDADES:
+
+### ACERCA DE
+<img src='/i2_1.PNG' width='600px'>
+
+### LISTA NOMBRES
+<img src='/i2_2.PNG' width='600px'>
+
+### DATOS COMPLETOS
+<img src='/i3_3.PNG' width='600px'>
+
+
 
 
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10388744&assignment_repo_type=AssignmentRepo)

@@ -186,7 +186,7 @@ describe("Prueba de la función sacaCiclistas que muestra los nombres de los cic
 /**
  * PRUEBA DE LA FUNCIÓN QUE ME REALIZA EL CUERPO DE A FUNCIÓN DE LA HU 2
  */
-describe("Comprueba cuperpo SEGUNDA tabla", function(){
+describe("Comprueba cuperpo de la tabla de todos los datos", function(){
 
 
     it("Compreba que la función rellena la tabla correctamente", function() {
@@ -259,6 +259,12 @@ describe("Prueba de la función todosDatos que muestra los datos de los ciclista
     })
 })
 
+/**
+ * 
+ * FUNCIÓN QUE PRUEBA LA FUNCIÓN DE MOSTRAR LOS CICLISTA DE MANERA ORDENADA POR EL NOMBRE
+ * 
+ */
+
 describe("Prueba de la función muestraCiclistasOrd que muestra los nombres de los ciclistas ordenados", function(){
     
     it("Comprueba que la función devuelve correctamente el código html ordenado para hacer la tabla con los nombres",  function(){
@@ -289,6 +295,71 @@ describe("Prueba de la función muestraCiclistasOrd que muestra los nombres de l
 
         //expect(prueba.children[0].textContent).toBe('Jose Ballester Marin');
         //expect(resultado).toBe('<table class="op1"><thead><th>Ciclistas</th></thead><tbody><tr><td><em>Jose Ballester Marin</em></td></tr><tr><td><em>Juan Ballester Marin</em></td></tr></tbody></table>');
+    })
+})
+
+/**
+ * 
+ * FUNCIÓN QUE PRUEBA LA FUNCIÓN DE MOSTRAR LOS CICLISTAS POR EL CRITERIO QUE EL JUGADOR DESEE
+ * 
+ */
+
+describe("Prueba de la función muestraCampo que muestra los datos de los ciclistas ordenados por un campo", function(){
+    
+    it("Comprueba que la función devuelve correctamente el código html para hacer la tabla con sus datos ordenados",  function(){
+        let ciclistass = {
+            data: [
+              { 
+                //id: 1,
+                data: {
+                  nombre: "Jose",
+                  apellidos: "Ballester Marin",
+                  id: "0001",
+                  email: "jbm@uja.es",
+                  f_nac: { dia: 16, mes: 5, anio: 2000 },
+                  equipos: ["movistar", "vodafone", "orange"]
+                }
+              },
+              { 
+                //id: 2,
+                data: {
+                  nombre: "Angel",
+                  apellidos: "Garcia Marin",
+                  id: "0002",
+                  email: "agm@uja.es",
+                  f_nac: { dia: 16, mes: 8, anio: 2030 },
+                  equipos: ["movistar", "orange"]
+                }
+              }
+            ]
+          };
+        
+
+        //spyOn(Frontend.Article, "actualizar");
+         //expect(Frontend.Article.actualizar).toHaveBeenCalledWith("Datos de los ciclistas ordenados",'<table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody><tr><td>0002</td><td>Angel Garcia Marin</td><td>movistar,orange</td><td>16/8/2030</td><td>agm@uja.es</td></tr></tbody></table>');
+        //expect(p1).toContain(`<table class="op1"><thead><th>ID</th><th>Nombre</th><th>Apellidos</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody><tr><td>1</td><td>Jose</td><td>Ballester Marin</td><td>movistar,vodafone,orange</td><td>16/5/2000</td><td>jbm@uja.es</td></tr><tr><td>2</td><td>Angel</td><td>Garcia Marin</td><td>movistar,orange</td><td>16/8/2030</td><td>agm@uja.es</td></tr></tbody></table>`);
+         //expect(Frontend.Article.actualizar).toHaveBeenCalledWith("Datos de los ciclistas ordenados", '<table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody><tr><td>0002</td><td>Angel Garcia Marin</td><td>movistar,orange</td><td>16/8/2030</td><td>agm@uja.es</td></tr></tbody></table>');
+
+        //PRUEBA DEL NOMBRE
+        Plantilla.muestraCampo("nombre",ciclistass);
+        expect(elementoContenido.getElementsByTagName("td")[0].innerText.includes('0002')).toBeTrue()
+
+        //PRUEBA DEL APELLIDO
+        Plantilla.muestraCampo("apellidos",ciclistass);
+        expect(elementoContenido.getElementsByTagName("td")[0].innerText.includes('0001')).toBeTrue()
+
+        //PRUEBA DEL EQUIPO
+        Plantilla.muestraCampo("equipos",ciclistass);
+        expect(elementoContenido.getElementsByTagName("td")[0].innerText.includes('0002')).toBeTrue()
+
+        //PRUEBA DEL EMAIL
+        Plantilla.muestraCampo("email",ciclistass);
+        expect(elementoContenido.getElementsByTagName("td")[0].innerText.includes('0002')).toBeTrue()
+
+        //PRUEBA DE LA FECHA DE NACIMIENTO
+        Plantilla.muestraCampo("f_nac",ciclistass);
+        expect(elementoContenido.getElementsByTagName("td")[0].innerText.includes('0001')).toBeTrue()
+        
     })
 })
 
