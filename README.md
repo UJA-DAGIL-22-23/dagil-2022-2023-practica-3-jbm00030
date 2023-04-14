@@ -189,7 +189,7 @@ Captura de Pantalla de la colección - Fauna:
 <img src='/i2_2.PNG' width='600px'>
 
 ### LISTA CICLISTAS ORDENADOS POR
-<img src='/i3_3.PNG' width='600px'>
+<img src='/i2_3.PNG' width='600px'>
 
 
 
