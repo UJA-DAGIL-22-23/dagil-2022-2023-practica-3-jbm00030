@@ -224,7 +224,9 @@ Plantilla.sacaCiclistasMS = async function(cond, callBackFn){
 
 /**
  * ciclista CICLISTA DEL QUE SE OPTIENEN LOS DATOS 
+ * 
  */
+
 Plantilla.muestraCiclistaID = function (ciclista){
     let x = "";
 
@@ -273,6 +275,44 @@ Plantilla.muestraCampo = function (cond, ciclistas){
     //ACTUALIZO LA VISTA
     Frontend.Article.actualizar("Datos de los ciclistas ordenados",x)
 
+}
+
+Plantilla.cuerpoEditable = function(c){
+    const ciclista= c.data;
+    
+    //const aux= new Date (c.f_nac.dia, c.f_nac.mes, c.f_nac.anio);
+
+    return `<tr><td>${ciclista.id}</td><td>${ciclista.nombre}</td><td>${ciclista.apellidos}</td><td>${ciclista.equipos}</td><td>${ciclista.f_nac.dia}/${ciclista.f_nac.mes}/${ciclista.f_nac.anio}</td><td>${ciclista.email}</td><td><div class="btn"><a href="javascript:Plantilla.modNombre('${c.ref['@ref'].id}')">MODIFICAR NOMBRE</a></div></td></tr>`;                              
+}
+
+
+Plantilla.todosDatosEditables = function(vector){
+    
+    let x = "";
+
+    x += `<table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Apellidos</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>`;
+    vector.data.forEach(element => x += Plantilla.cuerpoEditable(element))
+    x += `</tbody></table>`;
+
+    Frontend.Article.actualizar("Datos de todos los ciclistas",x);
+}
+
+Plantilla.modNombre = function(ciclista){
+    let c= `<form method='post' action=''> <table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>
+                <tr> <td> <input type="text" disabled id="id_c" value="${ciclista.data.id}" name="nombre_ciclista"/> </td>
+                     <td> <input type="text" id="nombre_c" value="${ciclista.data.nombre}" name="apellidos_ciclista"/> </td> 
+                     <td> <input type="text" disabled id="apellidos_c" value="${ciclista.data.nombre}" name="apellidos_ciclista"/> </td>
+                     <td> <input type="text" disabled id="equipos_c" value="${ciclista.data.equipos}" name="equipos_ciclista"/> </td>
+                     <td> <input type="text" disabled id="f_nac_c" value="${ciclista.f_nac.dia}/${ciclista.f_nac.mes}/${ciclista.f_nac.anio}" name="f_nac_ciclista"/> </td>
+                     <td> <input type="text" disabled id="em_c" value="${ciclista.data.email}" name="email_ciclista"/> </td>
+
+                    <td><div class="btn"><a href="javascript:Plantilla.save('359097846737141965')">Confirmar</a></div></td>
+                </tr>
+                </tbody>
+                </table>
+            </form>`;
+
+    Frontend.Article.actualizar("Modificando el nombre del ciclista", c)            
 }
 
 //FUNCIONES PARA PROCESAR LOS EVENTOS DE LOS BOTONES
@@ -362,3 +402,41 @@ Plantilla.lista_todoOrd= function (){
     });
 
 }
+
+Plantilla.lista_datosEdi = function (){
+    this.descargarRuta("/plantilla/sacaCiclistas", this.todosDatosEditables);
+}
+
+
+Plantilla.changeNombre = function (id){
+    this.muestraID(id, this.modNombre)
+}
+
+Plantilla.save = async function (id_ciclista) {
+    try{
+        let enlace = Frontend.API_GATEWAY + "/plantilla/setCiclista"
+        let id = id_deportista
+        const response = await fetch(enlace, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'no-cors', // no-cors, cors, *same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'omit', // include, *same-origin, omit
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrer: 'no-referrer', // no-referrer, *client
+            body: JSON.stringify({
+                "id_c": id,
+                "nombre_ciclista": document.getElementById("nombre_c").value,
+                "apellidos_ciclista": document.getElementById("apellidos_c").value,
+                "email_ciclista": document.getElementById("email_c").value,
+                "equipos_ciclista": document.getElementById("equipos_c").value,
+            }),
+        });
+        Plantilla.todosDatos(id_deportista);
+    } catch (error) {
+        alert("Error: No se han podido acceder al API Gateway " + error)
+    }
+}
+    

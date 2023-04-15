@@ -100,6 +100,36 @@ const CB_MODEL_SELECTS = {
         }
     },
 
+    setCiclista: async (req, res) =>{
+        try{
+            let valorDevuelto = {}
+            let data = (Object.values(req.body)[0] === '') ? JSON.parse(Object.keys(req.body)[0]) : req.body
+            let deportista = await client.query(
+                q.Update(
+                    q.Ref(q.Collection(COLLECTION), data.id_ciclista),
+                    {
+                        data: 
+                        {
+                            nombre: data.nombre_ciclista,
+                            apellidos: data.apellidos_ciclista,
+                            email: data.email_ciclista,
+                            equipos: data.equipos_ciclista,
+                        },
+                    },
+                )
+            )
+                .then((ret) => {
+                    valorDevuelto = ret
+                    CORS(res)
+                        .status(200).header( 'Content-Type', 'application/json' ).json(valorDevuelto)
+                })
+
+        } catch (error) {
+            CORS(res).status(500).json({ error: error.description })
+        }
+        
+    },
+
 }
 
     
