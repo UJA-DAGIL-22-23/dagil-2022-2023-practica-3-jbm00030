@@ -83,5 +83,14 @@ router.post("/setCiclista", async (req, res) =>{
     }
 })
 
+
+router.post('/newCiclista', async (req, res) => {
+    try{
+        await callbacks.newCiclista(req, res);
+    }catch (error) {
+        console.log(error);
+    }
+})
+
 // Exporto el módulo para poder usarlo en server
 module.exports = router;

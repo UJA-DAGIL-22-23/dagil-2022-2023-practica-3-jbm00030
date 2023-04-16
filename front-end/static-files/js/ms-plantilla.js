@@ -340,6 +340,51 @@ Plantilla.modNombre = function(ciclista){
     Frontend.Article.actualizar("Modificando el nombre del ciclista", c)            
 }
 
+
+Plantilla.nuevoCiclista = async function () {
+    try{
+        let ruta = Frontend.API_GATEWAY + "/plantilla/newCiclista";
+        const respuesta = await fetch(ruta, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'no-cors', // no-cors, cors, *same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'omit', // include, *same-origin, omit
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrer: 'no-referrer', // no-referrer, *client
+            body: JSON.stringify({
+                "id_ciclista": document.getElementById("id-ciclista").value,
+                "nombre_ciclista": document.getElementById("nombre-ciclista").value,
+                "apellidos_ciclista": document.getElementById("apellidos-ciclista").value,
+                "equipos_ciclista": document.getElementById("equipos-ciclista").value.split(","),
+                "f_nac_ciclista": document.getElementById("f_nac-ciclista").value.split("/"),
+                "email_ciclista": document.getElementById("email-ciclista").value,
+            })
+        });
+        Plantilla.mostarTodos();
+    } catch (error) {
+        alert("Error: No se ha podido acceder al API Gateway " + error);
+    }
+};
+
+
+Plantilla.lista_form_nuevoCiclista = function () {
+    let ciclista = ` <form method='post' action=''> <table class="op1"><thead><th>ID</th><th>Ciclista</th><th>Apellidos</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>
+    <tr> <td> <input type="text" disabled id="id_c" required value="${ciclista.id}" name="id_ciclista"/> </td>
+         <td> <input type="text" id="nombre_c" value="${ciclista.nombre}" name="nombre_ciclista"/> </td> 
+         <td> <input type="text" disabled id="apellidos_c" value="${ciclista.apellidos}" name="apellidos_ciclista"/> </td>
+         <td> <input type="text" disabled id="equipos_c" value="${ciclista.equipos}" name="equipos_ciclista"/> </td>
+         <td> <input type="text" disabled id="em_c" value="${ciclista.email}" name="email_ciclista"/> </td>
+
+        <td><div class="btn"><a href="javascript:Plantilla.save('359097846737141965')">Confirmar</a></div></td>
+    </tr>
+    </tbody>
+    </table>
+                    </form>`;
+}
+
 //FUNCIONES PARA PROCESAR LOS EVENTOS DE LOS BOTONES
 
 /**

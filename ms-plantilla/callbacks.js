@@ -130,6 +130,33 @@ const CB_MODEL_SELECTS = {
         
     },
 
+    newCiclista: async (req, res) => {
+        try{
+            let valorDevuelto={}
+            let data = (Object.values(req.body)[0] === '') ? JSON.parse(Object.keys(req.body)[0]): req.body
+            let ciclista = await client.query(
+                q.Create(
+                    q.Collection(COLLECTION), {
+                        data: {
+                            id: data.
+                            id: data.
+                            id: data.
+                            id: data.
+                            id: data.
+                            id: data.
+                        },
+                    },
+                )
+            ).then((ret) => {
+                valorDevuelto = ret 
+                CORS(res).status(200).header('Content-Type', 'application/json' ).json(valorDevuelto)
+            })
+        } catch (error){
+            console.log(error);
+            CORS(res).status(500).json({ error: error.description});
+        }
+    },
+
 }
 
     
