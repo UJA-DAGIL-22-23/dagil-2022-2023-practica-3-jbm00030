@@ -138,12 +138,12 @@ const CB_MODEL_SELECTS = {
                 q.Create(
                     q.Collection(COLLECTION), {
                         data: {
-                            id: data.
-                            id: data.
-                            id: data.
-                            id: data.
-                            id: data.
-                            id: data.
+                            id: data.id_ciclista,
+                            nombre: data.nombre_ciclista,
+                            apellidos: data.apellidos_ciclista,
+                            equipos: data.equipos_ciclista,
+                            f_nac: data.f_nac_ciclista,
+                            email: data.email_ciclista
                         },
                     },
                 )

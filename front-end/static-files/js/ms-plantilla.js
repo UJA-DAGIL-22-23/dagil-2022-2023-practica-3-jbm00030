@@ -155,8 +155,9 @@ Plantilla.muestraCiclistas = function(vector){
 
 Plantilla.todosDatos = function(vector){
     
-    console.log(vector)
-    console.log("AQUI")
+    //console.log(vector)
+    
+    //console.log("AQUI")
     let x = "";
 
     x += `<table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>`;
@@ -359,7 +360,7 @@ Plantilla.nuevoCiclista = async function () {
                 "nombre_ciclista": document.getElementById("nombre-ciclista").value,
                 "apellidos_ciclista": document.getElementById("apellidos-ciclista").value,
                 "equipos_ciclista": document.getElementById("equipos-ciclista").value.split(","),
-                "f_nac_ciclista": document.getElementById("f_nac-ciclista").value.split("/"),
+                "f_nac_ciclista": document.getElementById("f_nac-ciclista").value,
                 "email_ciclista": document.getElementById("email-ciclista").value,
             })
         });
@@ -370,19 +371,21 @@ Plantilla.nuevoCiclista = async function () {
 };
 
 
-Plantilla.lista_form_nuevoCiclista = function () {
+Plantilla.form_nuevoCiclista = function () {
     let ciclista = ` <form method='post' action=''> <table class="op1"><thead><th>ID</th><th>Ciclista</th><th>Apellidos</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>
-    <tr> <td> <input type="text" disabled id="id_c" required value="${ciclista.id}" name="id_ciclista"/> </td>
-         <td> <input type="text" id="nombre_c" value="${ciclista.nombre}" name="nombre_ciclista"/> </td> 
-         <td> <input type="text" disabled id="apellidos_c" value="${ciclista.apellidos}" name="apellidos_ciclista"/> </td>
-         <td> <input type="text" disabled id="equipos_c" value="${ciclista.equipos}" name="equipos_ciclista"/> </td>
-         <td> <input type="text" disabled id="em_c" value="${ciclista.email}" name="email_ciclista"/> </td>
+    <tr> <td> <input type="number"  id="id-ciclista"  placeholder="ID" name="id_ciclista"/> </td>
+         <td> <input type="text"  id="nombre-ciclista" placeholder="Nombre" name="nombre_ciclista"/> </td> 
+         <td> <input type="text"  id="apellidos-ciclista" placeholder="Apellidos" name="apellidos_ciclista"/> </td>
+         <td> <input type="text"  id="equipos-ciclista" placeholder="Equipos separados por , " name="equipos_ciclista"/> </td>
+         <td> <input type="date"  id="f_nac-ciclista" placeholder="dd/mm/aaaa" name="f_nac__ciclista"/> </td>
+         <td> <input type="text"  id="email-ciclista" placeholder="Email" name="email_ciclista"/> </td>
 
-        <td><div class="btn"><a href="javascript:Plantilla.save('359097846737141965')">Confirmar</a></div></td>
+        <td><div class="btn"><a href="javascript:Plantilla.nuevoCiclista()">Confirmar</a></div></td>
     </tr>
     </tbody>
     </table>
                     </form>`;
+    Frontend.Article.actualizar("Datos nuevo deportista", ciclista);
 }
 
 //FUNCIONES PARA PROCESAR LOS EVENTOS DE LOS BOTONES
@@ -394,6 +397,10 @@ Plantilla.lista_form_nuevoCiclista = function () {
 
 Plantilla.lista_nombres = function (){
     this.descargarRuta("/plantilla/sacaCiclistas", this.muestraCiclistas);
+}
+
+Plantilla.mostarTodos = function(){
+    this.descargarRuta("/plantilla/sacaCiclistas", this.todosDatos);
 }
 /**
  * Función principal para responder al evento de elegir la opción "Home"
