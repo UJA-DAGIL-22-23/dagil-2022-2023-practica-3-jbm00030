@@ -7,6 +7,8 @@
 
 "use strict";
 
+//const { response } = require("express");
+
 /// Creo el espacio de nombres
 let Plantilla = {};
 
@@ -115,7 +117,8 @@ Plantilla.cuerpo1 = function(c){
 
 Plantilla.cuerpo2 = function(c){
     const ciclista= c.data;
-    
+    //console.log("OTRO")
+    //console.log(ciclista)
     //const aux= new Date (c.f_nac.dia, c.f_nac.mes, c.f_nac.anio);
 
     return `<tr><td>${ciclista.id}</td><td>${ciclista.nombre} ${ciclista.apellidos}</td><td>${ciclista.equipos}</td><td>${ciclista.f_nac.dia}/${ciclista.f_nac.mes}/${ciclista.f_nac.anio}</td><td>${ciclista.email}</td></tr>`;
@@ -148,8 +151,12 @@ Plantilla.muestraCiclistas = function(vector){
  * @param {*} vector 
  * 
  */
+
+
 Plantilla.todosDatos = function(vector){
     
+    console.log(vector)
+    console.log("AQUI")
     let x = "";
 
     x += `<table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>`;
@@ -220,7 +227,27 @@ Plantilla.sacaCiclistasMS = async function(cond, callBackFn){
 }
 
 
+Plantilla.buscar = async function (funcion, nombre){
+    let respuesta= null;
 
+    try{
+        const ruta = Frontend.API_GATEWAY + "/plantilla/sacaCiclistas"
+        respuesta = await fetch(ruta)
+    } catch (error){
+        alert("Error: No se ha podido acceder al API Gateway")
+        console.error(error)
+    }
+
+    let ciclistas = null;
+
+    if(respuesta){
+        ciclistas = await respuesta.json()
+
+        const resultado = ciclistas.data.filter(element => element.data.nombre === nombre)
+        //console.log(resultado)
+        funcion(resultado)
+    }
+}
 
 /**
  * ciclista CICLISTA DEL QUE SE OPTIENEN LOS DATOS 
@@ -279,8 +306,6 @@ Plantilla.muestraCampo = function (cond, ciclistas){
 
 Plantilla.cuerpoEditable = function(c){
     const ciclista= c.data;
-    
-    //const aux= new Date (c.f_nac.dia, c.f_nac.mes, c.f_nac.anio);
 
     return `<tr><td>${ciclista.id}</td><td>${ciclista.nombre}</td><td>${ciclista.apellidos}</td><td>${ciclista.equipos}</td><td>${ciclista.f_nac.dia}/${ciclista.f_nac.mes}/${ciclista.f_nac.anio}</td><td>${ciclista.email}</td><td><div class="btn"><a href="javascript:Plantilla.modNombre('${c.ref['@ref'].id}')">MODIFICAR NOMBRE</a></div></td></tr>`;                              
 }
@@ -298,13 +323,13 @@ Plantilla.todosDatosEditables = function(vector){
 }
 
 Plantilla.modNombre = function(ciclista){
-    let c= `<form method='post' action=''> <table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>
-                <tr> <td> <input type="text" disabled id="id_c" value="${ciclista.data.id}" name="nombre_ciclista"/> </td>
-                     <td> <input type="text" id="nombre_c" value="${ciclista.data.nombre}" name="apellidos_ciclista"/> </td> 
-                     <td> <input type="text" disabled id="apellidos_c" value="${ciclista.data.nombre}" name="apellidos_ciclista"/> </td>
-                     <td> <input type="text" disabled id="equipos_c" value="${ciclista.data.equipos}" name="equipos_ciclista"/> </td>
-                     <td> <input type="text" disabled id="f_nac_c" value="${ciclista.f_nac.dia}/${ciclista.f_nac.mes}/${ciclista.f_nac.anio}" name="f_nac_ciclista"/> </td>
-                     <td> <input type="text" disabled id="em_c" value="${ciclista.data.email}" name="email_ciclista"/> </td>
+    //const aux= ciclista.data;
+    let c= `<form method='post' action=''> <table class="op1"><thead><th>ID</th><th>Ciclista</th><th>Apellidos</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>
+                <tr> <td> <input type="text" disabled id="id_c" required value="${ciclista.id}" name="id_ciclista"/> </td>
+                     <td> <input type="text" id="nombre_c" value="${ciclista.nombre}" name="nombre_ciclista"/> </td> 
+                     <td> <input type="text" disabled id="apellidos_c" value="${ciclista.apellidos}" name="apellidos_ciclista"/> </td>
+                     <td> <input type="text" disabled id="equipos_c" value="${ciclista.equipos}" name="equipos_ciclista"/> </td>
+                     <td> <input type="text" disabled id="em_c" value="${ciclista.email}" name="email_ciclista"/> </td>
 
                     <td><div class="btn"><a href="javascript:Plantilla.save('359097846737141965')">Confirmar</a></div></td>
                 </tr>
@@ -434,9 +459,13 @@ Plantilla.save = async function (id_ciclista) {
                 "equipos_ciclista": document.getElementById("equipos_c").value,
             }),
         });
-        Plantilla.todosDatos(id_deportista);
+        Plantilla.muestraID(id_deportista);
     } catch (error) {
         alert("Error: No se han podido acceder al API Gateway " + error)
     }
+}
+
+Plantilla.buscaNombre = function (nombre){
+    this.buscar(this.todosDatos, nombre);
 }
     
