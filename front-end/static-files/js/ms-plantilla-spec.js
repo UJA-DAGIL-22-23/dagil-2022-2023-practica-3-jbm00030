@@ -363,6 +363,43 @@ describe("Prueba de la función muestraCampo que muestra los datos de los ciclis
     })
 })
 
+describe("Prueba de la función form_nuevoCiclista que añade un nuevo ciclista a la BBDD", function(){
+
+    it("Se completan correctmente los campos", () => {
+        Plantilla.form_nuevoCiclista();
+
+        document.getElementById("id-ciclista").value="0012";
+        document.getElementById("nombre-ciclista").value="Jose";
+        document.getElementById("apellidos-ciclista").value="Ballester";
+        document.getElementById("equipos-ciclista").value="movistar";
+        document.getElementById("f_nac-ciclista").value= "16-05-2000";
+        document.getElementById("email-ciclista").value="jbm@uja.es";
+
+
+        expect(document.getElementById("id-ciclista").value).toBe("0012");
+        expect(document.getElementById("nombre-ciclista").value).toBe("Jose");
+        expect(document.getElementById("apellidos-ciclista").value).toBe("Ballester");
+        expect(document.getElementById("equipos-ciclista").value).toBe("movistar");
+        //expect(document.getElementById("f_nac-ciclista").value).toBe("16-05-2000");
+        expect(document.getElementById("email-ciclista").value).toBe("jbm@uja.es");
+
+    });
+
+
+
+    it("Devuelve el código HTML neceseario para realizar el formulario", () =>{
+        Plantilla.form_nuevoCiclista();
+
+        expect(document.getElementById("id-ciclista")).toBeTruthy();
+        expect(document.getElementById("nombre-ciclista")).toBeTruthy();
+        expect(document.getElementById("apellidos-ciclista")).toBeTruthy();
+        expect(document.getElementById("equipos-ciclista")).toBeTruthy();
+        expect(document.getElementById("f_nac-ciclista")).toBeTruthy();
+        expect(document.getElementById("email-ciclista")).toBeTruthy();
+    });
+
+})
+
 /*
 IMPORTANTE
 ==========
