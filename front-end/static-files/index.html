@@ -64,17 +64,17 @@
                     <button id="btn" type="submit">GO</button>
                 </form>
             </div>
-        <form>
-            <label>Busca un ciclista por nombre</label>
-            <input type="text" id="condition" name="buscaNom">
-            <button type="button" onclick="busca()">BUSCAR</button>
-        </form>
-        <script>
-            function busca(){
-                let aux = document.getElementById("condition").value;
-                Plantilla.buscaNombre(aux);
-            }
-        </script>
+        <a href="javascript:Plantilla.buscaNombre()" class="opcion-principal"
+            title="HU 8">Busca por Nombre</a>
+            <br></br>
+            <div id="busqueda" style="display: none;">
+                <form>
+                    <label>Busca un ciclista por nombre</label>
+                    <input type="text" id="nameC" name="buscaNom">
+                    <button type="submit" id="btnBuscar">BUSCAR</button>
+                </form>
+            </div>
+        
     </nav>
 
     <!-- 

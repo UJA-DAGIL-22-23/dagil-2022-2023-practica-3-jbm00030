@@ -155,9 +155,7 @@ Plantilla.muestraCiclistas = function(vector){
 
 Plantilla.todosDatos = function(vector){
     
-    //console.log(vector)
-    
-    //console.log("AQUI")
+   
     let x = "";
 
     x += `<table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>`;
@@ -228,26 +226,18 @@ Plantilla.sacaCiclistasMS = async function(cond, callBackFn){
 }
 
 
-Plantilla.buscar = async function (funcion, nombre){
-    let respuesta= null;
+Plantilla.buscar = async function (nombre, ciclistas){
+    
+    const coincidencias= ciclistas.data.filter(element => element.data.nombre === nombre);
+    let x = "";
 
-    try{
-        const ruta = Frontend.API_GATEWAY + "/plantilla/sacaCiclistas"
-        respuesta = await fetch(ruta)
-    } catch (error){
-        alert("Error: No se ha podido acceder al API Gateway")
-        console.error(error)
-    }
+    x += `<table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>`;
+    coincidencias.forEach(element => x += Plantilla.cuerpo2(element))
+    x += `</tbody></table>`;
 
-    let ciclistas = null;
+    Frontend.Article.actualizar("Ciclistas encontrados",x);
 
-    if(respuesta){
-        ciclistas = await respuesta.json()
-
-        const resultado = ciclistas.data.filter(element => element.data.nombre === nombre)
-        //console.log(resultado)
-        funcion(resultado)
-    }
+    return x;
 }
 
 /**
@@ -514,11 +504,36 @@ Plantilla.save = async function (id_ciclista) {
         });
         Plantilla.muestraID(id_deportista);
     } catch (error) {
-        alert("Error: No se han podido acceder al API Gateway " + error)
+        alert("Error: No se ha podido acceder al API Gateway " + error)
     }
 }
 
-Plantilla.buscaNombre = function (nombre){
-    this.buscar(this.todosDatos, nombre);
+Plantilla.buscaNombre = function (){
+    //const name = document.querySelector('#busqueda').value;
+
+    //OBTENGO EL VALOR DEL FORMULARIO
+    const formulario = document.querySelector('#busqueda');
+    formulario.style.display = 'block';
+
+    //OBTENGO LA ACCIÓN DEL BOTÓN
+    const boton= document.querySelector('#btnBuscar');
+    
+    //ESCUCHO EL CLICK Y ACTUALIZO EL VALOR DE LA CONDICIÓN
+    formulario.addEventListener('submit', (click) =>{
+        click.preventDefault();
+        //AQUÍ GUARDO LA CONDICIÓN
+        const aux= document.querySelector('#nameC').value;
+
+        //LLAMO A LA FUCNION QUE ACTUALIZA LA VISTA CON LA CONDICIÓN ELEGIDA
+        this.sacaCiclistasMS(aux, this.buscar);
+
+        //AQUÍ SE MUESTRA EL RESULTADO AL HACER CLICK EN GO
+        const enlace= document.querySelectorAll('.mostrar');
+        click.forEach((enlace)=> {
+            enlace.addEventListener('click', () => {
+                formulario.style.display = 'none';
+            })
+        })
+    });
 }
     
