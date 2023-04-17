@@ -308,7 +308,7 @@ Plantilla.muestraCampo = function (cond, ciclistas){
 Plantilla.cuerpoEditable = function(c){
     const ciclista= c.data;
 
-    return `<tr><td>${ciclista.id}</td><td>${ciclista.nombre}</td><td>${ciclista.apellidos}</td><td>${ciclista.equipos}</td><td>${ciclista.f_nac.dia}/${ciclista.f_nac.mes}/${ciclista.f_nac.anio}</td><td>${ciclista.email}</td><td><div class="btn"><a href="javascript:Plantilla.modNombre('${c.ref['@ref'].id}')">MODIFICAR NOMBRE</a></div></td></tr>`;                              
+    return `<tr><td>${ciclista.id}</td><td>${ciclista.nombre}</td><td>${ciclista.apellidos}</td><td>${ciclista.equipos}</td><td>${ciclista.f_nac.dia}/${ciclista.f_nac.mes}/${ciclista.f_nac.anio}</td><td>${ciclista.email}</td><td><div class="btn"><a href="javascript:Plantilla.changeNombre('${c.ref['@ref'].id}')">MODIFICAR NOMBRE</a></div></td></tr>`;                              
 }
 
 
@@ -326,11 +326,12 @@ Plantilla.todosDatosEditables = function(vector){
 Plantilla.modNombre = function(ciclista){
     //const aux= ciclista.data;
     let c= `<form method='post' action=''> <table class="op1"><thead><th>ID</th><th>Ciclista</th><th>Apellidos</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>
-                <tr> <td> <input type="text" disabled id="id_c" required value="${ciclista.id}" name="id_ciclista"/> </td>
-                     <td> <input type="text" id="nombre_c" value="${ciclista.nombre}" name="nombre_ciclista"/> </td> 
-                     <td> <input type="text" disabled id="apellidos_c" value="${ciclista.apellidos}" name="apellidos_ciclista"/> </td>
-                     <td> <input type="text" disabled id="equipos_c" value="${ciclista.equipos}" name="equipos_ciclista"/> </td>
-                     <td> <input type="text" disabled id="em_c" value="${ciclista.email}" name="email_ciclista"/> </td>
+                <tr> <td> <input type="text" disabled id="id_c" value="FFF" name="id_ciclista"/> </td>
+                     <td> <input type="text" id="nombre_c" value="${ciclista.data.nombre}" name="nombre_ciclista"/> </td> 
+                     <td> <input type="text" disabled id="apellidos_c" value="${ciclista.data.apellidos}" name="apellidos_ciclista"/> </td>
+                     <td> <input type="text" disabled id="equipos_c" value="${ciclista.data.equipos}" name="equipos_ciclista"/> </td>
+                     <td> <input type="text" disabled id="f_nac_c" value="${ciclista.data.f_nac.dia}/${ciclista.data.f_nac.mes}/${ciclista.data.f_nac.anio}" name="apellidos_ciclista"/> </td>
+                     <td> <input type="text" disabled id="em_c" value="${ciclista.data.email}" name="email_ciclista"/> </td>
 
                     <td><div class="btn"><a href="javascript:Plantilla.save('359097846737141965')">Confirmar</a></div></td>
                 </tr>
@@ -491,8 +492,8 @@ Plantilla.changeNombre = function (id){
 
 Plantilla.save = async function (id_ciclista) {
     try{
-        let enlace = Frontend.API_GATEWAY + "/plantilla/setCiclista"
-        let id = id_deportista
+        let enlace = Frontend.API_GATEWAY + "/plantilla/setCiclista/"
+        let id = id_ciclista
         const response = await fetch(enlace, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'no-cors', // no-cors, cors, *same-origin
@@ -504,7 +505,7 @@ Plantilla.save = async function (id_ciclista) {
             redirect: 'follow', // manual, *follow, error
             referrer: 'no-referrer', // no-referrer, *client
             body: JSON.stringify({
-                "id_c": id,
+                "id_ciclista": id,
                 "nombre_ciclista": document.getElementById("nombre_c").value,
                 "apellidos_ciclista": document.getElementById("apellidos_c").value,
                 "email_ciclista": document.getElementById("email_c").value,

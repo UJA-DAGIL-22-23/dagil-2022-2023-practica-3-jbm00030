@@ -104,7 +104,7 @@ const CB_MODEL_SELECTS = {
         try{
             let valorDevuelto = {}
             let data = (Object.values(req.body)[0] === '') ? JSON.parse(Object.keys(req.body)[0]) : req.body
-            let deportista = await client.query(
+            let ciclista = await client.query(
                 q.Update(
                     q.Ref(q.Collection(COLLECTION), data.id_ciclista),
                     {
