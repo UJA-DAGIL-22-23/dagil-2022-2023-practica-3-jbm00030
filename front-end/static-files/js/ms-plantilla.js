@@ -316,12 +316,12 @@ Plantilla.todosDatosEditables = function(vector){
 Plantilla.modNombre = function(ciclista){
     //const aux= ciclista.data;
     let c= `<form method='post' action=''> <table class="op1"><thead><th>ID</th><th>Ciclista</th><th>Apellidos</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>
-                <tr> <td> <input type="text" disabled id="id_c" value="FFF" name="id_ciclista"/> </td>
+                <tr> <td> <input type="text" disabled id="id_c" value="${ciclista.data.id}" name="id_ciclista"/> </td>
                      <td> <input type="text" id="nombre_c" value="${ciclista.data.nombre}" name="nombre_ciclista"/> </td> 
-                     <td> <input type="text" disabled id="apellidos_c" value="${ciclista.data.apellidos}" name="apellidos_ciclista"/> </td>
-                     <td> <input type="text" disabled id="equipos_c" value="${ciclista.data.equipos}" name="equipos_ciclista"/> </td>
+                     <td> <input type="text" disabled id="apellidos_c" required value="${ciclista.data.apellidos}" name="apellidos_ciclista"/> </td>
+                     <td> <input type="text" disabled id="equipos_c"  required value="${ciclista.data.equipos}" name="equipos_ciclista"/> </td>
                      <td> <input type="text" disabled id="f_nac_c" value="${ciclista.data.f_nac.dia}/${ciclista.data.f_nac.mes}/${ciclista.data.f_nac.anio}" name="apellidos_ciclista"/> </td>
-                     <td> <input type="text" disabled id="em_c" value="${ciclista.data.email}" name="email_ciclista"/> </td>
+                     <td> <input type="text" disabled id="em_c" required value="${ciclista.data.email}" name="email_ciclista"/> </td>
 
                     <td><div class="btn"><a href="javascript:Plantilla.save('359097846737141965')">Confirmar</a></div></td>
                 </tr>
@@ -498,13 +498,13 @@ Plantilla.save = async function (id_ciclista) {
                 "id_ciclista": id,
                 "nombre_ciclista": document.getElementById("nombre_c").value,
                 "apellidos_ciclista": document.getElementById("apellidos_c").value,
-                "email_ciclista": document.getElementById("email_c").value,
-                "equipos_ciclista": document.getElementById("equipos_c").value,
+                "email_ciclista": document.getElementById("em_c").value,
+                //"equipos_ciclista": document.getElementById("equipos_c").value,
             }),
         });
-        Plantilla.muestraID(id_deportista);
+        Plantilla.muestraID(id_ciclista);
     } catch (error) {
-        alert("Error: No se ha podido acceder al API Gateway " + error)
+        alert("Error guardando: No se ha podido acceder al API Gateway " + error)
     }
 }
 
