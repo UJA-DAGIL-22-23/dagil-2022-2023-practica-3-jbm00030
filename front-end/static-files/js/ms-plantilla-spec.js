@@ -400,6 +400,51 @@ describe("Prueba de la función form_nuevoCiclista que añade un nuevo ciclista 
 
 })
 
+describe("Prueba de la función buscar que busca en la BBDD las coincidencias de nombres", function(){
+
+    it("Se busca correctamente", function() {
+
+        let ciclistas = {
+            data: [
+              { 
+                //id: 1,
+                data: {
+                  nombre: "Jose",
+                  apellidos: "Ballester Marin",
+                  id: "0001",
+                  email: "jbm@uja.es",
+                  f_nac: { dia: 16, mes: 5, anio: 2000 },
+                  equipos: ["movistar", "vodafone", "orange"]
+                }
+              },
+              { 
+                //id: 2,
+                data: {
+                  nombre: "Angel",
+                  apellidos: "Garcia Marin",
+                  id: "0002",
+                  email: "agm@uja.es",
+                  f_nac: { dia: 16, mes: 8, anio: 2030 },
+                  equipos: ["movistar", "orange"]
+                }
+              }
+            ]
+          };
+
+          let nombre= "Angel";
+          Plantilla.buscar(nombre,ciclistas);
+          
+
+          expect(elementoContenido.getElementsByTagName("td")[1].innerText.includes('Angel')).toBeTrue();
+          expect(elementoContenido.getElementsByTagName("td")[0].innerText.includes('0002')).toBeTrue()
+          expect(elementoContenido.getElementsByTagName("td")[2].innerText.includes('orange')).toBeTrue()
+          expect(elementoContenido.getElementsByTagName("td")[3].innerText.includes('16/8/2030')).toBeTrue()
+          expect(elementoContenido.getElementsByTagName("td")[4].innerText.includes('agm@uja.es')).toBeTrue()
+
+    
+
+    });
+})
 /*
 IMPORTANTE
 ==========
