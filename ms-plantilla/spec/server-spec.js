@@ -64,7 +64,7 @@ describe('Servidor PLANTILLA:', () => {
         );
     });
 
-  })
+  });
   it('Devuelve que el tamaño del vector de la bbdd debe ser 10 para sacaCiclistas', (done) => {
     supertest(app)
       .get('/sacaCiclistas')
@@ -94,17 +94,22 @@ describe('Servidor PLANTILLA:', () => {
       })
       .end((error) => { error ? done.fail(error) : done(); }
       );
-  })
+  });
 
   it('Devuelve correctamente los datos para cambiar el nombre en el formulario', (done) => {
     
+    let ciclista={
+      id: 0001,
+      nombre: Jose,
+      apellidos: Ballester,
+      equipos: [movistar],
+      f_nac: {dia: 16, mes:5, anio:2000},
+      email: uja.es
+    };
     
-    
-    
-    supertest(app).get('/sacaCiclista/359097846737141965')
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .expect(function (res) {
+    supertest(app).post('/plantilla/setCiclista').send(ciclista).expect(200).expect('Content-Type', /json/)
+    .expect(function (res) {
+      
         //console.log( res.body ); // Para comprobar qué contiene exactamente res.body
         
         assert(res.body.data.hasOwnProperty('nombre'));
@@ -113,7 +118,31 @@ describe('Servidor PLANTILLA:', () => {
       })
       .end((error) => { error ? done.fail(error) : done(); }
       );
-  })
+  });
+
+  it('Devuelve correctamente los datos para dar de alta un nuevo ciclista en el formulario', (done) => {
+    
+    let ciclista={
+      id: 0001,
+      nombre: Jose,
+      apellidos: Ballester,
+      equipos: [movistar],
+      f_nac: {dia: 16, mes:5, anio:2000},
+      email: uja.es
+    };
+    
+    supertest(app).post('/plantilla/newCiclista').send(ciclista).expect(200).expect('Content-Type', /json/)
+    .expect(function (res) {
+      
+        //console.log( res.body ); // Para comprobar qué contiene exactamente res.body
+        
+        assert(res.body.data.hasOwnProperty('nombre'));
+        assert(res.body.data.nombre === "Jose");
+
+      })
+      .end((error) => { error ? done.fail(error) : done(); }
+      );
+  });
 });
 
 
