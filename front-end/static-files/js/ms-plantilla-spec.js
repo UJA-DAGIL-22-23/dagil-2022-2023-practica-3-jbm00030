@@ -434,7 +434,7 @@ describe("Prueba de la función buscar que busca en la BBDD las coincidencias de
           Plantilla.buscar(nombre,ciclistas);
           
 
-          expect(elementoContenido.getElementsByTagName("td")[1].innerText.includes('Angel')).toBeTrue();
+          expect(elementoContenido.getElementsByTagName("td")[1].innerText.includes('Angel Garcia Marin')).toBeTrue();
           expect(elementoContenido.getElementsByTagName("td")[0].innerText.includes('0002')).toBeTrue()
           expect(elementoContenido.getElementsByTagName("td")[2].innerText.includes('orange')).toBeTrue()
           expect(elementoContenido.getElementsByTagName("td")[3].innerText.includes('16/8/2030')).toBeTrue()

@@ -6,4 +6,27 @@
  */
 
  
+table.op1 thead th,
+table.op1 tbody th  
+{
+    margin: auto;
+    height: 2.5em;
+    background-color: #ddf7d1;
+    text-transform: uppercase;
+}
 
+table.op1 tbody th,  
+table.op1 tbody tr
+{
+    background-color: #f954cd;
+    margin: 7px;
+    text-align: center;
+    height: 4.5em;
+}
+
+
+ table.op1
+ {
+    width: auto;
+    border: 1px solid #000000;
+}
