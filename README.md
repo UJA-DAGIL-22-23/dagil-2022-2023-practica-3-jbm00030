@@ -212,7 +212,7 @@ Captura de Pantalla de la colección - Fauna:
 #### Mostrando el nombre cambiado
 <img src='/i3_2_2.PNG' width='600px'>
 
-### LISTA CICLISTAS ORDENADOS POR
+### AÑADIR CICLISTA
 #### Formulario para añadir un ciclista
 <img src='/i3_3_1.PNG' width='600px'>
 
