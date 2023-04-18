@@ -113,7 +113,7 @@ const CB_MODEL_SELECTS = {
                             nombre: data.nombre_ciclista,
                             apellidos: data.apellidos_ciclista,
                             email: data.email_ciclista,
-                            //equipos: data.equipos_ciclista,
+                            equipos: data.equipos_ciclista,
                         },
                     },
                 )

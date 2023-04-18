@@ -176,10 +176,9 @@ describe("Prueba de la función sacaCiclistas que muestra los nombres de los cic
 
         //const resultado = Plantilla.muestraCiclistas(c);
 
-        //const prueba = resultado.getElementsByTagName('tbody')[0];
+        
 
-        //expect(prueba.children[0].textContent).toBe('Jose Ballester Marin');
-        //expect(resultado).toBe('<table class="op1"><thead><th>Ciclistas</th></thead><tbody><tr><td><em>Jose Ballester Marin</em></td></tr><tr><td><em>Juan Ballester Marin</em></td></tr></tbody></table>');
+       
     })
 })
 

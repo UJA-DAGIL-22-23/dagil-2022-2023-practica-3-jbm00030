@@ -95,6 +95,25 @@ describe('Servidor PLANTILLA:', () => {
       .end((error) => { error ? done.fail(error) : done(); }
       );
   })
+
+  it('Devuelve correctamente los datos para cambiar el nombre en el formulario', (done) => {
+    
+    
+    
+    
+    supertest(app).get('/sacaCiclista/359097846737141965')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .expect(function (res) {
+        //console.log( res.body ); // Para comprobar qué contiene exactamente res.body
+        
+        assert(res.body.data.hasOwnProperty('nombre'));
+        assert(res.body.data.nombre === "Jose");
+
+      })
+      .end((error) => { error ? done.fail(error) : done(); }
+      );
+  })
 });
 
 

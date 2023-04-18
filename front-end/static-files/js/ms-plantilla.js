@@ -99,6 +99,8 @@ Plantilla.mostrarAcercaDe = function (datosDescargados) {
  * CUERPO DE LA FUNCIÓN DE MOSTRAR TODOS LOS CICLISTAS POR SU NOMBRE COMPLETO
  * @param {*} c Objeto Ciclista del que se obtiene la información
  * @returns Devuelve exactamente la fila de la tabla de un ciclista concreto
+ * 
+ * TDD HECHO
  */
 
 
@@ -111,8 +113,12 @@ Plantilla.cuerpo1 = function(c){
 
 /**
  * 
- * @param {*} c 
- * @returns 
+ * MUESTRA TODOS LOS DATOS DE LOS CICLISTAS
+ * 
+ * @param {*} c Ciclistas para obtener sus datos
+ * @returns código HTML para rellenar una fila
+ * 
+ * TDD HECHO
  */
 
 Plantilla.cuerpo2 = function(c){
@@ -123,15 +129,18 @@ Plantilla.cuerpo2 = function(c){
 
     return `<tr><td>${ciclista.id}</td><td>${ciclista.nombre} ${ciclista.apellidos}</td><td>${ciclista.equipos}</td><td>${ciclista.f_nac.dia}/${ciclista.f_nac.mes}/${ciclista.f_nac.anio}</td><td>${ciclista.email}</td></tr>`;
 }
+
+
 //FUNCIONES REALIZADAS PARA PROCESAR LAS HISTORIAS DE USUARIO
 
 /**
  * 
  * ESTA FUNCIÓN MUESTRA LOS NOMBRE DE LOS CICLISTAS CON FORMATO HTML PARA DIRECTAMENTE MOSTRARLO
  * 
+ * @param {*} vector Vector con los ciclistas a mostrar
+ * 
+ * TDD HECHO
  */
-
-
 
 Plantilla.muestraCiclistas = function(vector){
 
@@ -148,7 +157,11 @@ Plantilla.muestraCiclistas = function(vector){
 
 /**
  * 
- * @param {*} vector 
+ * FUNCIÓN QUE RELLENA LA TABLA CON TODOS LOS DATOS DE LOS CICLISTAS
+ * 
+ * @param {*} vector Vector con todos los ciclistas para mostrar sus datos
+ * 
+ * TDD HECHO
  * 
  */
 
@@ -165,13 +178,15 @@ Plantilla.todosDatos = function(vector){
     Frontend.Article.actualizar("Datos de todos los ciclistas",x);
 }
 
+
 /**
  * 
  * ESTA FUNCIÓN MUESTRA LOS NOMBRES DE LOS CICLISTAS ORDENADOS CON FORMATO HTML PARA DIRECTAMENTE MOSTRARLO
  * 
+ * @param {*} vector Vector de ciclistas que se ordena y muestra
+ * 
+ * TDD HECHO
  */
-
-
 
 Plantilla.muestraCiclistasOrd = function(vector){
 
@@ -210,6 +225,8 @@ Plantilla.muestraID = async function(idCiclista, callBackFn){
  * 
  * @param {*} cond 
  * @param {*} callBackFn 
+ * 
+ * NO TDD ES ASYNC
  */
 Plantilla.sacaCiclistasMS = async function(cond, callBackFn){
     try{
@@ -225,6 +242,15 @@ Plantilla.sacaCiclistasMS = async function(cond, callBackFn){
     }
 }
 
+/**
+ * 
+ * @param {*} nombre 
+ * @param {*} ciclistas 
+ * @returns x
+ * 
+ * 
+ * TDD HECHO
+ */
 
 Plantilla.buscar = async function (nombre, ciclistas){
     
@@ -263,6 +289,8 @@ Plantilla.muestraCiclistaID = function (ciclista){
  * 
  * @param {*} cond Condición por la que ordenar
  * @param {*} ciclistas Todos los ciclistas para ordenar
+ * 
+ * TDD HECHO
  */
 
 Plantilla.muestraCampo = function (cond, ciclistas){
@@ -361,6 +389,12 @@ Plantilla.nuevoCiclista = async function () {
     }
 };
 
+/**
+ * 
+ * FUNCIÓN QUE GENERA UN FORMULARIO VACÍO PARA INTRODUCIR UN NUEVO CICLISTA A LA BBDD
+ * 
+ * TDD HECHO
+ */
 
 Plantilla.form_nuevoCiclista = function () {
     let ciclista = ` <form method='post' action=''> <table class="op1"><thead><th>ID</th><th>Ciclista</th><th>Apellidos</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody>
@@ -499,10 +533,10 @@ Plantilla.save = async function (id_ciclista) {
                 "nombre_ciclista": document.getElementById("nombre_c").value,
                 "apellidos_ciclista": document.getElementById("apellidos_c").value,
                 "email_ciclista": document.getElementById("em_c").value,
-                //"equipos_ciclista": document.getElementById("equipos_c").value,
+                "equipos_ciclista": document.getElementById("equipos_c").value,
             }),
         });
-        Plantilla.muestraID(id_ciclista);
+        Plantilla.lista_ciclista(id_ciclista);
     } catch (error) {
         alert("Error guardando: No se ha podido acceder al API Gateway " + error)
     }
