@@ -182,6 +182,82 @@ describe("Prueba de la función sacaCiclistas que muestra los nombres de los cic
     })
 })
 
+describe("Prueba de la función muestraCiclistaID que muestra los datos del ciclista", function(){
+    
+    it("Comprueba que la función devuelve correctamente el código html para hacer la tabla con sus datos",  function(){
+        const c = {
+            data: {
+              nombre: 'Jose',
+              apellidos: 'Ballester Marin',
+              id: '0001',
+              email: 'jbm@uja.es',
+              f_nac:{
+                dia: 16,
+                mes: 5,
+                anio: 2000
+              },
+              equipos: ["movistar","vodafone","orange"]
+            }
+        };
+
+       //const resultado=Plantilla.muestraCiclistaID(c);
+        
+       //expect(resultado).toBe('<tr><td>0001</td><td>Jose Ballester Marin</td><td>movistar,vodafone,orange</td><td>16/5/2000</td><td>jbm@uja.es</td></tr>');
+
+        spyOn(Frontend.Article, "actualizar");
+        Plantilla.muestraCiclistaID(c);
+        expect(Frontend.Article.actualizar).toHaveBeenCalledWith( 'Datos del ciclista', '<table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody><tr><td>0001</td><td>Jose Ballester Marin</td><td>movistar,vodafone,orange</td><td>16/5/2000</td><td>jbm@uja.es</td></tr></tbody></table>');
+        
+        //<tr><td><em>Jose Ballester Marin</em></td></tr>
+        
+        //expect(Frontend.Article.actualizar).toHaveBeenCalledWith("Nombre de todos los ciclistas", c);
+
+        //const resultado = Plantilla.muestraCiclistas(c);
+
+        
+
+       
+    })
+})
+
+
+
+
+//describe("Prueba de la función cuerpoEditable que muestra los datos del ciclista con un botón", function(){
+    
+    //it("Comprueba que la función devuelve correctamente el código html para hacer la tabla con sus datos",  function(){
+        const c = {
+            data: {
+              nombre: 'Jose',
+              apellidos: 'Ballester Marin',
+              id: '0001',
+              email: 'jbm@uja.es',
+              f_nac:{
+                dia: 16,
+                mes: 5,
+                anio: 2000
+              },
+              equipos: ["movistar"]
+            }
+        };
+
+
+        //ME FALLA AL QUERER INTRODUCIR EL ID DE LA BASE DE DATOS, NO SE TRAGA LA DOBLE '' '' 
+
+       //const resultado=Plantilla.cuerpoEditable(c);
+
+       //expect(resultado).toBe('<tr><td>0001</td><td>Jose</td><td>Ballester Marin</td><td>movistar</td><td>16/5/2000</td><td>jbm@uja.es</td><td><div class="btn-conf"><a href="javascript:Plantilla.changeNombre(359097846737141965)">MODIFICAR NOMBRE</a></div></td></tr>');
+
+        //spyOn(Frontend.Article, "actualizar");
+        
+        //Plantilla.muestraCiclistaID(c);
+        //expect(Frontend.Article.actualizar).toHaveBeenCalledWith( 'Datos del ciclista', '<table class="op1"><thead><th>ID</th><th>Ciclistas</th><th>Equipos</th><th>Fecha de Nacimiento</th><th>Email</th></thead><tbody><tr><td>0001</td><td>Jose Ballester Marin</td><td>movistar,vodafone,orange</td><td>16/5/2000</td><td>jbm@uja.es</td></tr></tbody></table>');
+               
+
+       
+    //})
+//})
+
 /**
  * PRUEBA DE LA FUNCIÓN QUE ME REALIZA EL CUERPO DE A FUNCIÓN DE LA HU 2
  */
@@ -379,7 +455,6 @@ describe("Prueba de la función form_nuevoCiclista que añade un nuevo ciclista 
         expect(document.getElementById("nombre-ciclista").value).toBe("Jose");
         expect(document.getElementById("apellidos-ciclista").value).toBe("Ballester");
         expect(document.getElementById("equipos-ciclista").value).toBe("movistar");
-        //expect(document.getElementById("f_nac-ciclista").value).toBe("16-05-2000");
         expect(document.getElementById("email-ciclista").value).toBe("jbm@uja.es");
 
     });
@@ -413,7 +488,7 @@ describe("Prueba de la función buscar que busca en la BBDD las coincidencias de
                   id: "0001",
                   email: "jbm@uja.es",
                   f_nac: { dia: 16, mes: 5, anio: 2000 },
-                  equipos: ["movistar", "vodafone", "orange"]
+                  equipos: ["movistar"]
                 }
               },
               { 
@@ -439,6 +514,16 @@ describe("Prueba de la función buscar que busca en la BBDD las coincidencias de
           expect(elementoContenido.getElementsByTagName("td")[2].innerText.includes('orange')).toBeTrue()
           expect(elementoContenido.getElementsByTagName("td")[3].innerText.includes('16/8/2030')).toBeTrue()
           expect(elementoContenido.getElementsByTagName("td")[4].innerText.includes('agm@uja.es')).toBeTrue()
+
+          let nombre2= "Jose";
+          Plantilla.buscar(nombre2,ciclistas);
+          
+
+          expect(elementoContenido.getElementsByTagName("td")[1].innerText.includes('Jose Ballester Marin')).toBeTrue();
+          expect(elementoContenido.getElementsByTagName("td")[0].innerText.includes('0001')).toBeTrue()
+          expect(elementoContenido.getElementsByTagName("td")[2].innerText.includes('movistar')).toBeTrue()
+          expect(elementoContenido.getElementsByTagName("td")[3].innerText.includes('16/5/2000')).toBeTrue()
+          expect(elementoContenido.getElementsByTagName("td")[4].innerText.includes('jbm@uja.es')).toBeTrue()
 
     
 

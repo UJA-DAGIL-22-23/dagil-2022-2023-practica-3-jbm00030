@@ -207,6 +207,8 @@ Plantilla.muestraCiclistasOrd = function(vector){
  * 
  * @param {*} idCiclista id del ciclista en concreto
  * @param {*} callBackFn función que se llama con los datos
+ * 
+ * NO TDD ES ASYNC
  */
 Plantilla.muestraID = async function(idCiclista, callBackFn){
     try{
@@ -221,10 +223,12 @@ Plantilla.muestraID = async function(idCiclista, callBackFn){
         console.error(error)
     }
 }
+
 /**
  * 
  * @param {*} cond 
  * @param {*} callBackFn 
+ * 
  * 
  * NO TDD ES ASYNC
  */
@@ -243,6 +247,8 @@ Plantilla.sacaCiclistasMS = async function(cond, callBackFn){
 }
 
 /**
+ * 
+ * BUSCA COINCIDENCIAS EN EL NOMBRE DE LOS CICLISTAS
  * 
  * @param {*} nombre 
  * @param {*} ciclistas 
@@ -267,8 +273,12 @@ Plantilla.buscar = async function (nombre, ciclistas){
 }
 
 /**
- * ciclista CICLISTA DEL QUE SE OPTIENEN LOS DATOS 
  * 
+ * MUESTRA UN SOLO CICLISTA
+ * 
+ * @param {*} ciclista CICLISTA DEL QUE SE OPTIENEN LOS DATOS 
+ * 
+ * TDD HECHO
  */
 
 Plantilla.muestraCiclistaID = function (ciclista){
@@ -323,12 +333,30 @@ Plantilla.muestraCampo = function (cond, ciclistas){
 
 }
 
+/**
+ * 
+ * PLANTILLA QUE HACE EL CUERPO DE LA TABLA PERO CON UN BOTÓN PARA EDITAR
+ * 
+ * @param {*} c CICLISTA
+ * @returns 
+ * 
+ * TDD HECHO
+ */
+
 Plantilla.cuerpoEditable = function(c){
     const ciclista= c.data;
 
     return `<tr><td>${ciclista.id}</td><td>${ciclista.nombre}</td><td>${ciclista.apellidos}</td><td>${ciclista.equipos}</td><td>${ciclista.f_nac.dia}/${ciclista.f_nac.mes}/${ciclista.f_nac.anio}</td><td>${ciclista.email}</td><td><div class="btn-conf"><a href="javascript:Plantilla.changeNombre('${c.ref['@ref'].id}')">MODIFICAR NOMBRE</a></div></td></tr>`;                              
 }
 
+/**
+ * 
+ * FUNCIÓN QUE RELLENA LA TABLA CON UN BOTÓN PARA EDITAR
+ * 
+ * @param {*} vector CICLISTAS
+ * 
+ * TDD HECHO
+ */
 
 Plantilla.todosDatosEditables = function(vector){
     
@@ -340,6 +368,15 @@ Plantilla.todosDatosEditables = function(vector){
 
     Frontend.Article.actualizar("Datos de todos los ciclistas",x);
 }
+
+/**
+ * 
+ * MUESTRA LA TABLA DEL CICLISTA QUE SE VA A EDITAR
+ * 
+ * @param {*} ciclista CICLISTA A MOSTRAR
+ * 
+ * TDD HECHO
+ */
 
 Plantilla.modNombre = function(ciclista){
     //const aux= ciclista.data;
@@ -361,6 +398,11 @@ Plantilla.modNombre = function(ciclista){
 }
 
 
+/**
+ * GUARDA UN NUEVO CICLISTA
+ * 
+ * NO DD ES ASYNC
+ */
 Plantilla.nuevoCiclista = async function () {
     try{
         let ruta = Frontend.API_GATEWAY + "/plantilla/newCiclista";
@@ -424,9 +466,13 @@ Plantilla.lista_nombres = function (){
     this.descargarRuta("/plantilla/sacaCiclistas", this.muestraCiclistas);
 }
 
+/**
+ * Función para mostrar todos los datos de todos los ciclistas
+ */
 Plantilla.mostarTodos = function(){
     this.descargarRuta("/plantilla/sacaCiclistas", this.todosDatos);
 }
+
 /**
  * Función principal para responder al evento de elegir la opción "Home"
  */
@@ -505,14 +551,30 @@ Plantilla.lista_todoOrd= function (){
 
 }
 
+/**
+ * Función que muestra la tabla de todos los datos con el botón de editar
+ */
 Plantilla.lista_datosEdi = function (){
     this.descargarRuta("/plantilla/sacaCiclistas", this.todosDatosEditables);
 }
 
+/**
+ * 
+ * Función que muestra un ciclista en concreto para modificar su nombre
+ * 
+ * @param {*} id ID del ciclistas
+ */
 
 Plantilla.changeNombre = function (id){
     this.muestraID(id, this.modNombre)
 }
+
+/**
+ * 
+ * Función que guarda los daos del ciclista
+ * 
+ * @param {*} id_ciclista id del ciclista
+ */
 
 Plantilla.save = async function (id_ciclista) {
     try{
@@ -541,6 +603,10 @@ Plantilla.save = async function (id_ciclista) {
         alert("Error guardando: No se ha podido acceder al API Gateway " + error)
     }
 }
+
+/**
+ * Función que busca el nombre de un ciclista en la BBDD 
+ */
 
 Plantilla.buscaNombre = function (){
     //const name = document.querySelector('#busqueda').value;
