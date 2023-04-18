@@ -326,7 +326,7 @@ Plantilla.muestraCampo = function (cond, ciclistas){
 Plantilla.cuerpoEditable = function(c){
     const ciclista= c.data;
 
-    return `<tr><td>${ciclista.id}</td><td>${ciclista.nombre}</td><td>${ciclista.apellidos}</td><td>${ciclista.equipos}</td><td>${ciclista.f_nac.dia}/${ciclista.f_nac.mes}/${ciclista.f_nac.anio}</td><td>${ciclista.email}</td><td><div class="btn"><a href="javascript:Plantilla.changeNombre('${c.ref['@ref'].id}')">MODIFICAR NOMBRE</a></div></td></tr>`;                              
+    return `<tr><td>${ciclista.id}</td><td>${ciclista.nombre}</td><td>${ciclista.apellidos}</td><td>${ciclista.equipos}</td><td>${ciclista.f_nac.dia}/${ciclista.f_nac.mes}/${ciclista.f_nac.anio}</td><td>${ciclista.email}</td><td><div class="btn-conf"><a href="javascript:Plantilla.changeNombre('${c.ref['@ref'].id}')">MODIFICAR NOMBRE</a></div></td></tr>`;                              
 }
 
 
@@ -351,7 +351,7 @@ Plantilla.modNombre = function(ciclista){
                      <td> <input type="text" disabled id="f_nac_c" value="${ciclista.data.f_nac.dia}/${ciclista.data.f_nac.mes}/${ciclista.data.f_nac.anio}" name="apellidos_ciclista"/> </td>
                      <td> <input type="text" disabled id="em_c" required value="${ciclista.data.email}" name="email_ciclista"/> </td>
 
-                    <td><div class="btn"><a href="javascript:Plantilla.save('359097846737141965')">Confirmar</a></div></td>
+                    <td><div class="btn-conf"><a href="javascript:Plantilla.save('359097846737141965')">Confirmar</a></div></td>
                 </tr>
                 </tbody>
                 </table>
@@ -405,7 +405,7 @@ Plantilla.form_nuevoCiclista = function () {
          <td> <input type="date"  id="f_nac-ciclista" placeholder="dd/mm/aaaa" name="f_nac__ciclista"/> </td>
          <td> <input type="text"  id="email-ciclista" placeholder="Email" name="email_ciclista"/> </td>
 
-        <td><div class="btn"><a href="javascript:Plantilla.nuevoCiclista()">Confirmar</a></div></td>
+        <td><div class="btn-conf"><a href="javascript:Plantilla.nuevoCiclista()">Confirmar</a></div></td>
     </tr>
     </tbody>
     </table>

@@ -30,3 +30,12 @@ table.op1 tbody tr
     width: auto;
     border: 1px solid #000000;
 }
+
+.btn-conf {
+    
+    background-color: #edf500;
+    color: #000000;
+    padding: 15px;
+    border-radius: 20px;
+    font-weight: 600;
+}
